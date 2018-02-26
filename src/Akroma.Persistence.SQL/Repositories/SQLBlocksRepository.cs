@@ -20,6 +20,7 @@ namespace Akroma.Persistence.SQL.Repositories
         {
             var blockDocuments = await _context
                 .Blocks
+                .AsNoTracking()
                 .OrderByDescending(x => x.Number)
                 .Take(limit)
                 .ToListAsync();
@@ -31,6 +32,7 @@ namespace Akroma.Persistence.SQL.Repositories
         {
             var blockDocument = await _context
                 .Blocks
+                .AsNoTracking()
                 .AsQueryable()
                 .SingleAsync(b => b.Number == number);
 
@@ -41,6 +43,7 @@ namespace Akroma.Persistence.SQL.Repositories
         {
             var blockDocument = await _context
                 .Blocks
+                .AsNoTracking()
                 .AsQueryable()
                 .SingleAsync(b => b.Hash == hash);
 
