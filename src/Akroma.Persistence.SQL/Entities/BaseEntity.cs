@@ -1,4 +1,4 @@
-namespace Akroma.Persistence.SQL.Model
+namespace Akroma.Persistence.SQL.Entities
 {
     public class BaseEntity
     {

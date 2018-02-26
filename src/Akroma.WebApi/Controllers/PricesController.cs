@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Akroma.WebApi.Controllers
 {
+    [Produces("application/json")]
     public class PricesController
     {
         private readonly IDispatcher _dispatcher;
@@ -16,6 +17,9 @@ namespace Akroma.WebApi.Controllers
             _dispatcher = dispatcher;
         }
 
+        /// <summary>
+        /// Get price of Akroma
+        /// </summary>
         [ProducesResponseType(typeof(IEnumerable<Price>), 200)]
         [HttpGet, Route("prices")]
         [ResponseCache(Duration = 600)]

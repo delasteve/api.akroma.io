@@ -1,5 +1,5 @@
 using System;
-using Akroma.Persistence.SQL.Model;
+using Akroma.Persistence.SQL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Akroma.Persistence.SQL

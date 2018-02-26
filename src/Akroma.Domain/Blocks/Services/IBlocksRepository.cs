@@ -9,5 +9,6 @@ namespace Akroma.Domain.Blocks.Services
         Task<IEnumerable<Block>> GetBlocksAsync(int limit);
         Task<Block> GetBlockByNumberAsync(int number);
         Task<Block> GetBlockByHashAsync(string hash);
+        Task<int> GetBlocksMinedForAddress(string address);
     }
 }

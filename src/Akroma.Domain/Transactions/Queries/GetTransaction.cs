@@ -1,5 +1,5 @@
-using Brickweave.Cqrs;
 using Akroma.Domain.Transactions.Models;
+using Brickweave.Cqrs;
 
 namespace Akroma.Domain.Transactions.Queries
 {

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Brickweave.Cqrs;
 using Akroma.Domain.Blocks.Models;
 using Akroma.Domain.Blocks.Services;
+using Brickweave.Cqrs;
 
 namespace Akroma.Domain.Blocks.Queries
 {

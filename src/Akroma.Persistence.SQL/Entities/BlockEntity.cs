@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Akroma.Domain.Blocks.Models;
 
-namespace Akroma.Persistence.SQL.Model
+namespace Akroma.Persistence.SQL.Entities
 {
     public class BlockEntity : BaseEntity
     {
@@ -23,25 +24,13 @@ namespace Akroma.Persistence.SQL.Model
         public long Timestamp { get; set; }
         public ICollection<UncleEntity> Uncles { get; set; } = new List<UncleEntity>();
 
-        public Domain.Blocks.Models.Block ToBlock()
+        public Block ToBlock()
         {
-            return new Domain.Blocks.Models.Block(this.Number,
-                this.Hash,
-                ParentHash,
-                Nonce,
-                Sha3Uncles,
-                LogsBloom,
-                TransactionsRoot,
-                StateRoot,
-                Miner,
-                Difficulty,
-                TotalDifficulty,
-                Size,
-                ExtraData,
-                GasLimit,
-                GasUsed,
-                Timestamp,
-                Uncles.Select(x=>x.Data));
+            return new Block(
+                Number, Hash, ParentHash, Nonce, Sha3Uncles, LogsBloom, TransactionsRoot,
+                StateRoot, Miner, Difficulty, TotalDifficulty, Size, ExtraData, GasLimit,
+                GasUsed, Timestamp, Uncles.Select(x => x.Data)
+            );
         }
     }
 }

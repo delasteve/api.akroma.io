@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Akroma.Domain.Transactions.Models;
@@ -7,7 +6,7 @@ using Brickweave.Cqrs;
 
 namespace Akroma.Domain.Transactions.Queries
 {
-    public class GetTransactionsHandler: IQueryHandler<GetTransactions, IEnumerable<Transaction>>
+    public class GetTransactionsHandler : IQueryHandler<GetTransactions, IEnumerable<Transaction>>
     {
         private readonly ITransactionsRepository _transactionsRepository;
 
@@ -18,10 +17,7 @@ namespace Akroma.Domain.Transactions.Queries
 
         public async Task<IEnumerable<Transaction>> HandleAsync(GetTransactions query)
         {
-            var limit = query.Limit ?? 50;
-            limit = Math.Max(1, Math.Min(limit, 100));
-
-            return await _transactionsRepository.GetTransactionsAsync(limit);
+            return await _transactionsRepository.GetTransactionsAsync(query.Limit);
         }
     }
 }

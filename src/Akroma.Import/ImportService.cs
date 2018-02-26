@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Akroma.Persistence.SQL;
-using Akroma.Persistence.SQL.Model;
+using Akroma.Persistence.SQL.Entities;
 using Akroma.Web3;
 using Akroma.Web3.Model;
 using Microsoft.EntityFrameworkCore;
@@ -51,7 +51,7 @@ namespace Akroma.Import
                 }
                 await GetBlock(nextBlock.ToString());
             }
-            
+
         }
 
         private async Task<SaveResult> SaveTransactions(AkromaContext context, BlockWithTransactions unsavedBlock)

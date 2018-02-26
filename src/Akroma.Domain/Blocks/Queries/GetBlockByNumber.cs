@@ -1,5 +1,5 @@
-using Brickweave.Cqrs;
 using Akroma.Domain.Blocks.Models;
+using Brickweave.Cqrs;
 
 namespace Akroma.Domain.Blocks.Queries
 {

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Brickweave.Cqrs;
 using Akroma.Domain.Blocks.Models;
 using Akroma.Domain.Blocks.Services;
-using System;
+using Brickweave.Cqrs;
 
 namespace Akroma.Domain.Blocks.Queries
 {
@@ -18,10 +18,7 @@ namespace Akroma.Domain.Blocks.Queries
 
         public async Task<IEnumerable<Block>> HandleAsync(GetBlocks query)
         {
-            var limit = query.Limit ?? 50;
-            limit = Math.Min(100, Math.Max(1, limit));
-
-            return await _blocksRepository.GetBlocksAsync(limit);
+            return await _blocksRepository.GetBlocksAsync(query.Limit);
         }
     }
 }

@@ -1,4 +1,6 @@
-namespace Akroma.Persistence.SQL.Model
+using Akroma.Domain.Transactions.Models;
+
+namespace Akroma.Persistence.SQL.Entities
 {
     public class TransactionEntity : BaseEntity
     {
@@ -14,10 +16,12 @@ namespace Akroma.Persistence.SQL.Model
         public long Timestamp { get; set; }
         public string Input { get; set; }
 
-        public Domain.Transactions.Models.Transaction ToTransaction()
+        public Transaction ToTransaction()
         {
-            return new Domain.Transactions.Models.Transaction(Hash, Nonce, BlockHash, TransactionIndex, From, To, Value,
-                Gas, GasPrice, Timestamp, Input);
+            return new Transaction(
+                Hash, Nonce, BlockHash, TransactionIndex, From, To, Value,
+                Gas, GasPrice, Timestamp, Input
+            );
         }
     }
 }

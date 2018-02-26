@@ -16,8 +16,9 @@ namespace Akroma.Domain.Prices.Queries
         public async Task<IEnumerable<Price>> HandleAsync(GetPrice query)
         {
             var response = await HttpClient.GetStringAsync(new Uri("https://stocks.exchange/api2/ticker"));
-            var prices = JsonConvert.DeserializeObject<List<StocksPrice>>(response);
-            var aka = prices.FirstOrDefault(x => x.market_name == "AKA_BTC");
+            var akroma = JsonConvert
+                .DeserializeObject<List<StocksExchangePrice>>(response)
+                .FirstOrDefault(x => x.MarketName == "AKA_BTC");
 
             return new List<Price>
             {
@@ -26,26 +27,9 @@ namespace Akroma.Domain.Prices.Queries
                     Id = "akroma",
                     Name = "Akroma",
                     Symbol = "AKA",
-                    Value = decimal.Parse(aka.ask)
+                    Value = decimal.Parse(akroma.Ask)
                 }
             };
         }
     }
-    public class StocksPrice
-    {
-        public string min_order_amount { get; set; }
-        public string ask { get; set; }
-        public string bid { get; set; }
-        public string last { get; set; }
-        public string lastDayAgo { get; set; }
-        public string vol { get; set; }
-        public string spread { get; set; }
-        public string buy_fee_percent { get; set; }
-        public string sell_fee_percent { get; set; }
-        public string market_name { get; set; }
-        public string updated_time { get; set; }
-        public string server_time { get; set; }
-    }
-
-
 }

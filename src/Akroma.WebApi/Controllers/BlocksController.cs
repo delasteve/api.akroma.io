@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Brickweave.Cqrs;
-using Microsoft.AspNetCore.Mvc;
 using Akroma.Domain.Blocks.Models;
 using Akroma.Domain.Blocks.Queries;
+using Akroma.WebApi.Models;
+using Brickweave.Cqrs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Akroma.WebApi.Controllers
 {
+    [Produces("application/json")]
     public class BlocksController : Controller
     {
         private readonly IDispatcher _dispatcher;
@@ -21,10 +23,11 @@ namespace Akroma.WebApi.Controllers
         /// </summary>
         /// <param name="limit">The number of blocks to return (default: 50, min: 1, max: 100)</param>
         [ProducesResponseType(typeof(IEnumerable<Block>), 200)]
+        [ProducesResponseType(typeof(Error), 400)]
         [HttpGet, Route("blocks")]
-        public async Task<IEnumerable<Block>> Get(int? limit)
+        public async Task<IEnumerable<Block>> Get(int? limit = 50)
         {
-            return await _dispatcher.DispatchQueryAsync(new GetBlocks(limit));
+            return await _dispatcher.DispatchQueryAsync(new GetBlocks(limit.Value));
         }
 
         /// <summary>
